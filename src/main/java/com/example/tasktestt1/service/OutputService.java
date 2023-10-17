@@ -3,7 +3,9 @@ package com.example.tasktestt1.service;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class OutputService {
@@ -21,6 +23,14 @@ public class OutputService {
             }
             result.put(ch, ++count);
         }
-        return result;
+        return result.entrySet()
+                .stream()
+                .sorted(Map.Entry.<Character, Integer>comparingByValue().reversed())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
     }
 }

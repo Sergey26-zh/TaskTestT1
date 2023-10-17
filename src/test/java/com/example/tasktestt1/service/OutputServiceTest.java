@@ -32,15 +32,9 @@ class OutputServiceTest {
 
     @Test
     public void symbolFrequency_correctSort() {
-        Map<Character, Integer> map = new HashMap<>();
-        map.put('b', 5);
-        map.put('a', 3);
-        map.put('c', 2);
-
-        Integer[] expected = map.values().toArray(new Integer[map.size()]);
-        Integer[] result = outputService.symbolFrequency(input).values().toArray(new Integer[outputService.symbolFrequency(input).size()]);
-
-        assertArrayEquals(expected, result);
+        Integer[] expected = new Integer[]{5, 3, 2};
+        Integer[] values = outputService.symbolFrequency(input).values().toArray(new Integer[0]);
+        assertArrayEquals(expected, values);
     }
 
     @Test
